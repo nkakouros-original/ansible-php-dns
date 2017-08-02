@@ -1,2 +1,15 @@
 ---
-# handlers file for ansible-php-dns
+
+- name: Restart the php-dns service
+  service:
+    name: php-dns
+    state: restarted
+    enabled: yes
+  listen: restart php-dns
+
+- name: Reload php-dns service
+  service:
+    name: php-dns
+    state: restarted
+    enabled: yes
+  listen: reload php-dns

@@ -1,0 +1,52 @@
+---
+
+- name: Create installation directory
+  file:
+    path: "{{ php_dns_installation_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Check if composer.json exists
+  stat:
+    path: "{{ php_dns_installation_dir }}/composer.json"
+  register: exists
+
+- name: Create empty composer.json
+  copy:
+    content: {}
+    dest: "{{ php_dns_installation_dir }}/composer.json"
+  when: exists.stat.exists == False
+
+- name: Add yswery/dns to composer.json
+  composer:
+    command: require
+    arguments: yswery/dns:dev-master
+    working_dir: "{{ php_dns_installation_dir }}"
+  when: php_dns_git_repo == ''
+
+- name: Add php-dns git repo
+  composer:
+    command: config
+    arguments: "repositories.git-repo vcs {{ php_dns_git_repo }}"
+    working_dir: "{{ php_dns_installation_dir }}"
+  when: php_dns_git_repo != ''
+  changed_when: false
+
+- name: Add php-dns from git repo
+  composer:
+    command: require
+    arguments: yswery/dns:dev-stable
+    working_dir: "{{ php_dns_installation_dir }}"
+  when: php_dns_git_repo != ''
+
+- name: Install php-dns
+  composer:
+    command: install
+    working_dir: "{{ php_dns_installation_dir }}"
+
+- name: Install dns php script
+  template:
+    src: "{{ php_dns_script_template }}"
+    dest: /usr/bin/dns.php
+    mode: 0755
+  notify: restart php-dns

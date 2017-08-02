@@ -1,2 +1,4 @@
 ---
-# tasks file for ansible-php-dns
+
+- import_tasks: php-dns.yml
+  when: php_dns_enabled

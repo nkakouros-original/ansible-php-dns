@@ -1,0 +1,13 @@
+---
+
+- name: Create configuration directory
+  file:
+    path: /etc/php-dns
+    state: directory
+
+- name: Upload record file
+  copy:
+    src: "{{ php_dns_record_file }}"
+    dest: /etc/php-dns/
+    mode: 0644
+  notify: restart php-dns

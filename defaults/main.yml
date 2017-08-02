@@ -1,2 +1,7 @@
 ---
-# defaults file for ansible-php-dns
+
+php_dns_enabled: yes
+php_dns_installation_dir: /usr/lib/php-dns
+php_dns_git_repo: ''
+php_dns_record_file: dns_record.json
+php_dns_script_template: dns.php.j2
