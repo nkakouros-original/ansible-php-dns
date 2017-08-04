@@ -35,7 +35,7 @@
 - name: Add php-dns from git repo
   composer:
     command: require
-    arguments: yswery/dns:dev-stable
+    arguments: "yswery/dns:dev-{{ php_dns_git_checkout }}"
     working_dir: "{{ php_dns_installation_dir }}"
   when: php_dns_git_repo != ''
 
