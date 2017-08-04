@@ -1,15 +1,9 @@
 ---
 
-- name: Restart the php-dns service
-  service:
-    name: php-dns
+- name: Restart php-dns service
+  systemd:
+    name: php-dns.service
     state: restarted
     enabled: yes
+    daemon_reload: yes
   listen: restart php-dns
-
-- name: Reload php-dns service
-  service:
-    name: php-dns
-    state: restarted
-    enabled: yes
-  listen: reload php-dns

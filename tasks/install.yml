@@ -43,6 +43,7 @@
   composer:
     command: install
     working_dir: "{{ php_dns_installation_dir }}"
+  notify: restart php-dns
 
 - name: Install dns php script
   template:
