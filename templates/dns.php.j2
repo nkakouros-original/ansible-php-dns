@@ -4,7 +4,7 @@
 require "{{ php_dns_installation_dir }}/vendor/autoload.php";
 
 // JSON formatted DNS records file
-$record_file = '/etc/php-dns/{{ php_dns_record_file }}';
+$record_file = '/etc/php-dns/dns_records.json';
 $jsonStorageProvider = new yswery\DNS\JsonStorageProvider($record_file);
 
 // Recursive provider acting as a fallback to the JsonStorageProvider
