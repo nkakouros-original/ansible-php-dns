@@ -2,12 +2,12 @@
 
 - name: Create systemd service
   template:
-    src: php-dns.service.j2
+    src: "{{ php_dns_service_template }}"
     dest: /etc/systemd/system/php-dns.service
-  notify: restart php-dns
+  notify: restart php-dns service
 
 - name: Start php-dns service
   systemd:
     name: php-dns.service
     state: started
-    enabled: yes
+    enabled: true

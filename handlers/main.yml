@@ -4,6 +4,6 @@
   systemd:
     name: php-dns.service
     state: restarted
-    enabled: yes
-    daemon_reload: yes
-  listen: restart php-dns
+    enabled: true
+    daemon_reload: true
+  listen: restart php-dns service

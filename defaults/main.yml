@@ -1,9 +1,44 @@
 ---
 
 php_dns_enabled: yes
+# Set to no to completely disable the role
+
 php_dns_installation_dir: /usr/lib/php-dns
+# Where php-dns will be installed to
+
+php_dns_version: 1.0
+# The version of PHP-DNS to install
+
 php_dns_git_repo: ''
-php_dns_record_file: dns_record.json.j2
-php_dns_script_template: dns.php.j2
+# A git repo from where to grab php-dns, eg:
+# php_dns_git_repo: https://github.com/yswery/PHP-DNS-SERVER.git
+
+# The dns records that the dns server will be the authority of. The keys of each
+# record are not checked by the role, it is up to you to specify them correctly.
+php_dns_records:
+  - domain: example.com
+    A:
+      - 111.111.111.111
+      - 222.222.222.222
+    MX:
+      - exchange: mx.example.com
+        preference: 20
+    NS:
+      - ns1.example.com
+      - ns2.example.com
+    TXT: Text here
+    AAAA: DEAD:01:BEEF
+    CNAME: www.example.com
+    SOA:
+      - mname: ns1.example.com
+        nrame: admin.example.com
+        serial: 2014111100
+        retry: 7200
+        refresh: 1800
+        expire: 8600
+        minimum: 300
+
+
 php_dns_address: 0.0.0.0
+
 php_dns_port: 53
