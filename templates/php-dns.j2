@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+function expand_tilde($path) {
+  if (function_exists('posix_getuid') && strpos($path, '~') !== false) {
+    $info = posix_getpwuid(posix_getuid());
+      $path = str_replace('~', $info['dir'], $path);
+  }
+  return $path;
+}
+
+require_once expand_tilde("{{ composer_home_path }}/vendor/autoload.php");
+
+$record_file = '/etc/php-dns/dns_records.json';
+
+// JsonResolver created and provided with path to file with json dns records
+$jsonResolver = new yswery\DNS\Resolver\JsonResolver([$record_file]);
+
+// System resolver acting as a fallback to the JsonResolver
+$systemResolver = new yswery\DNS\Resolver\SystemResolver();
+
+// StackableResolver will try each resolver in order and return the first match
+$stackableResolver = new yswery\DNS\Resolver\StackableResolver([$jsonResolver, $systemResolver]);
+
+// Create the eventDispatcher and add the event subscribers
+$eventDispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+$eventDispatcher->addSubscriber(new \yswery\DNS\EchoLogger());
+
+// Create a new instance of Server class
+$server = new yswery\DNS\Server($stackableResolver, $eventDispatcher, '{{ php_dns_address}}', {{ php_dns_port }});
+
+// Start DNS server
+$server->start();
