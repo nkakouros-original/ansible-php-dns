@@ -4,6 +4,7 @@
   template:
     src: "{{ php_dns_service_template }}"
     dest: /etc/systemd/system/php-dns.service
+    validate: '/usr/bin/systemd-analyze verify %s'
   notify: restart php-dns service
 
 - name: Start php-dns service
