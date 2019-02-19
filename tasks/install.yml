@@ -1,8 +1,8 @@
 ---
 
-- name: Install nmap
+- name: Install npm
   apt:
-    name: nmap
+    name: npm
 
 - name: Install jsonlint for syntax check
   npm:
