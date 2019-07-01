@@ -7,12 +7,12 @@
 - name: Install jsonlint for syntax check
   npm:
     name: jsonlint
-    global: yes
+    global: true
 
 - name: Install php-dns start script
   template:
     src: "{{ php_dns_script_template }}"
     dest: /usr/bin/php-dns
-    mode: 0755
+    mode: 0o755
     validate: '/usr/bin/php -l %s'
   notify: restart php-dns service

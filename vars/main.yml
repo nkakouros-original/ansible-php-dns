@@ -11,5 +11,5 @@ php_dns_service_template: php-dns.service.j2
 
 composer_global_packages:
   - name: yswery/dns
-    version: v1.0
+    version: v1.3
   - name: psr/log
