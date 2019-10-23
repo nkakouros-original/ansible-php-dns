@@ -1,6 +1,7 @@
 {
-   {% for domain in php_dns_records %}
-      "{{ domain['domain'] }}":
-         {{ domain | removekeys(['domain']) | to_json }}
-   {% endfor %}
+  {% for domain in php_dns_records %}
+    "{{ domain['domain'] }}":
+      {{ domain | removekeys(['domain']) | to_json }},
+  {% endfor %}
+  "comments": "{{ php_dns_records_comment | default('') }}"
 }
