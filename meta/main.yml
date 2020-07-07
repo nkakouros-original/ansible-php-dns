@@ -17,3 +17,6 @@ galaxy_info:
 
 dependencies:
   - geerlingguy.composer
+
+collections:
+  - community.general
