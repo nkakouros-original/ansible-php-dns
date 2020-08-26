@@ -3,11 +3,14 @@
 php_dns_enabled: yes
 # Set to no to completely disable the role
 
+php_dns_version: v1.1.3
+# The version of PHP-DNS to install
+
 php_dns_installation_dir: /usr/lib/php-dns
 # Where php-dns will be installed to
 
-php_dns_version: v1.1.3
-# The version of PHP-DNS to install
+php_dns_zone_file: /etc/php-dns/dns_records.json
+# The file to hold dns records (should be in json format)
 
 php_dns_git_repo: ''
 # A git repo from where to grab php-dns, eg:

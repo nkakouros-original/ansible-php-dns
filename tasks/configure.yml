@@ -2,13 +2,13 @@
 
 - name: Create configuration directory
   file:
-    path: /etc/php-dns
+    path: "{{ php_dns_zone_file | dirname }}"
     state: directory
 
 - name: Upload record file
   template:
     src: "{{ php_dns_record_file }}"
-    dest: /etc/php-dns/dns_records.json
+    dest: "{{ php_dns_zone_file }}"
     mode: 0o644
     validate: 'jsonlint %s'
   notify: restart php-dns service
