@@ -3,5 +3,5 @@
     "{{ domain['domain'] }}":
       {{ domain | removekeys(['domain']) | to_json }},
   {% endfor %}
-  "comments": "{{ php_dns_records_comment | default('') }}"
+  "comments": "{{ php_dns_records_comments | default('') }}"
 }
