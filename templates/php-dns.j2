@@ -29,7 +29,7 @@ $eventDispatcher->addSubscriber(new \yswery\DNS\Event\Subscriber\EchoLogger());
 $eventDispatcher->addSubscriber(new \yswery\DNS\Event\Subscriber\ServerTerminator());
 
 // Create a new instance of Server class
-$server = new yswery\DNS\Server($stackableResolver, $eventDispatcher, '{{ php_dns_address}}', {{ php_dns_port }});
+$server = new yswery\DNS\Server($stackableResolver, $eventDispatcher, '{{ php_dns_host }}', {{ php_dns_port }});
 
 // Start DNS server
 $server->start();
