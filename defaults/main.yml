@@ -46,6 +46,7 @@ php_dns_records_comments: ''
 # A comment that will be added to the php-dns json record file. Since json does
 # not support any comments, this will be added under a "comments" key.
 
-php_dns_address: 0.0.0.0
+php_dns_host: 0.0.0.0
+php_dns_address: "{{ php_dns_host }}"
 
 php_dns_port: 53
