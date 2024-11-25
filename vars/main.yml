@@ -15,4 +15,4 @@ composer_global_packages:
   - name: psr/log
 
 
-php_dns_host: "{{ php_dns_host }}"
+php_dns_host: "{{ php_dns_address }}"
